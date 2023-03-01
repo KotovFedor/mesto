@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+
+    <title>Место</title>
+  </head>
+  <body class="root">
+    <header class="header">
+      <img
+        class="header__logo"
+        src="./images/header__logo.svg"
+        alt='Логотип "Место"'
+      />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img
+          class="profile__avatar"
+          src="./images/profile__avatar.jpg"
+          alt="Аватар профиля"
+        />
+
+        <div class="profile__info">
+          <div class="profile__info_container">
+            <div class="profile__container">
+              <h1 class="profile__info_name">Жак-Ив Кусто</h1>
+              <button class="edit-button">
+                <img
+                  class="edit-image"
+                  src="./images/edit-image.svg"
+                  alt="Кнопка редактирования"
+                />
+              </button>
+            </div>
+            <p class="profile__info_profession">Исследователь океана</p>
+          </div>
+        </div>
+        <div class="add-button">
+          <img
+            class="add-image"
+            src="./images/add-image.svg"
+            alt="Кнопка добавления карточки"
+          />
+        </div>
+      </section>
+      <section class="elements">
+        <ul class="element-grid">
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image1.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Карачаевск</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image2.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Гора Эльбрус</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image3.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Домбай</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image4.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Гора Эльбрус</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image5.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Домбай</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__image"
+              src="./images/image6.jpg"
+              alt="Фото карточки"
+            />
+            <div class="element__container">
+              <h2 class="element__text">Карачаево-Черкессия</h2>
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023. Kotov Fedor</p>
+    </footer>
+    <section class="popup" aria-label="Форма редактирования профиля">
+      <img
+        class="popup__close-icon"
+        src="./images/popup__close-icon.svg"
+        alt="Кнопка закрытия формы"
+      />
+      <form class="popup__container" id="popup__form">
+        <p class="popup__text">Редактировать профиль</p>
+        <input
+          class="popup__name"
+          placeholder="Жак-Ив Кусто"
+          value="Жак-Ив Кусто"
+          name="name"
+        />
+        <input
+          class="popup__profession"
+          placeholder="Исследователь океана"
+          value="Исследователь океана"
+          name="profession"
+        />
+        <button class="submit-btn" type="submit" form="popup__form">
+          Сохранить
+        </button>
+      </form>
+    </section>
+    <script src="./index.js"></script>
+  </body>
+</html>
