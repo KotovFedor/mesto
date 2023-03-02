@@ -1,15 +1,12 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 
-@import url(../blocks/add-button/add-button.css);
-
-@import url(../blocks/add-image/add-image.css);
-
-@import url(../blocks/edit-button/edit-button.css);
+@import url(../blocks/button/button.css);
 
 @import url(../blocks/element-grid/element-grid.css);
 
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__button/element__button.css);
 @import url(../blocks/element/__container/element__container.css);
 @import url(../blocks/element/__icon/element__icon.css);
 @import url(../blocks/element/__image/element__image.css);
@@ -23,21 +20,27 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
+@import url(../blocks/link/link.css);
+
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__close-icon/popup__close-icon.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__name/popup__name.css);
-@import url(../blocks/popup/__profession/popup__profession.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__add-image/profile__add-image.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__container/profile__container.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__edit-image/profile__edit-image.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__profession/profile__profession.css);
 
 @import url(../blocks/root/root.css);
-
-@import url(../blocks/submit-btn/submit-btn.css);

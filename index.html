@@ -9,11 +9,13 @@
   </head>
   <body class="root">
     <header class="header">
-      <img
-        class="header__logo"
-        src="./images/header__logo.svg"
-        alt='Логотип "Место"'
-      />
+      <a class="link" href="#" target="_blank">
+        <img
+          class="header__logo"
+          src="./images/header__logo.svg"
+          alt='Логотип "Место"'
+        />
+      </a>
     </header>
     <main class="content">
       <section class="profile">
@@ -22,13 +24,12 @@
           src="./images/profile__avatar.jpg"
           alt="Аватар профиля"
         />
-
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="edit-button">
+            <button class="button profile__edit-button" type="button">
               <img
-                class="edit-image"
+                class="profile__edit-image"
                 src="./images/edit-image.svg"
                 alt="Кнопка редактирования"
               />
@@ -36,13 +37,13 @@
           </div>
           <p class="profile__profession">Исследователь океана</p>
         </div>
-        <div class="add-button">
+        <button class="button profile__add-button" type="button">
           <img
-            class="add-image"
+            class="profile__add-image"
             src="./images/add-image.svg"
             alt="Кнопка добавления карточки"
           />
-        </div>
+        </button>
       </section>
       <section class="elements">
         <ul class="element-grid">
@@ -54,11 +55,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Карачаевск</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
           <li class="element">
@@ -69,11 +72,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Гора Эльбрус</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
           <li class="element">
@@ -84,11 +89,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Домбай</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
           <li class="element">
@@ -99,11 +106,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Гора Эльбрус</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
           <li class="element">
@@ -114,11 +123,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Домбай</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
           <li class="element">
@@ -129,11 +140,13 @@
             />
             <div class="element__container">
               <h2 class="element__text">Карачаево-Черкессия</h2>
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
             </div>
           </li>
         </ul>
@@ -142,31 +155,38 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Kotov Fedor</p>
     </footer>
+
     <section class="popup" aria-label="Форма редактирования профиля">
-      <img
-        class="popup__close-icon"
-        src="./images/popup__close-icon.svg"
-        alt="Кнопка закрытия формы"
-      />
-      <form class="popup__container" id="popup__form">
-        <p class="popup__text">Редактировать профиль</p>
-        <input
-          class="popup__name"
-          placeholder="Жак-Ив Кусто"
-          value="Жак-Ив Кусто"
-          name="name"
-        />
-        <input
-          class="popup__profession"
-          placeholder="Исследователь океана"
-          value="Исследователь океана"
-          name="profession"
-        />
-        <button class="submit-btn" type="submit" form="popup__form">
-          Сохранить
+      <div class="popup__container">
+        <button class="button popup__close-button" type="button">
+          <img
+            class="popup__close-icon"
+            src="./images/popup__close-icon.svg"
+            alt="Кнопка закрытия формы"
+          />
         </button>
-      </form>
+        <form class="popup__form" name="edit-profile-form" id="popup__form">
+          <h2 class="popup__text">Редактировать профиль</h2>
+          <input
+            class="popup__input popup__input_user_name"
+            value="Жак-Ив Кусто"
+            name="name"
+          />
+          <input
+            class="popup__input popup__input_user_profession"
+            value="Исследователь океана"
+            name="profession"
+          />
+          <button
+            class="button popup__submit-btn"
+            type="submit"
+            form="popup__form"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
     </section>
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

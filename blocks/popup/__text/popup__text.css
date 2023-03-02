@@ -4,22 +4,17 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  /* identical to box height */
   color: #000000;
-  width: 358px;
-  height: 29px;
-  margin: auto;
-  margin-top: 34px;
-  margin-bottom: 48px;
+  padding: 34px 36px 48px 36px;
+  text-align: left;
+  margin: 0;
 }
 
 @media screen and (max-width: 619px) {
   .popup__text {
-    width: 238px;
-    height: 22px;
+    max-width: 238px;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 25px;
-    margin-bottom: 75px;
+    padding: 25px 22px 75px 22px;
   }
 }

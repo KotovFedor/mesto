@@ -7,12 +7,16 @@
   /* identical to box height, or 114% */
   color: #ffffff;
   margin: 0 18px 7px 0px;
+  max-width: 294px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 619px) {
   .profile__name {
     font-size: 27px;
     margin-right: 10px;
-    max-width: 162px;
+    max-width: 189px;
   }
 }
