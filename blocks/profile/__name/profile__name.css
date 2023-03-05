@@ -15,8 +15,10 @@
 
 @media screen and (max-width: 619px) {
   .profile__name {
+    line-height: 33px;
     font-size: 27px;
-    margin-right: 10px;
-    max-width: 189px;
+    margin: 0;
+    display: inline-block;
+    max-width: -webkit-fill-available;
   }
 }

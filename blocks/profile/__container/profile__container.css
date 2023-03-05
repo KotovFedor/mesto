@@ -2,3 +2,10 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 619px) {
+  .profile__container {
+    display: inline;
+    line-height: 0;
+  }
+}
