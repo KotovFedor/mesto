@@ -45,14 +45,33 @@
           />
         </button>
       </section>
+
+      <template id="card-tempalte">
+        <li class="element">
+          <img class="element__image" src="#" alt="Фото карточки" />
+          <button class="button element__trash-button"></button>
+          <div class="element__container">
+            <h2 class="element__text"></h2>
+            <button class="button element__button" type="button">
+              <img
+                class="element__icon"
+                src="./images/element__icon.svg"
+                alt="Кнопка лайка"
+              />
+            </button>
+          </div>
+        </li>
+      </template>
+
       <section class="elements">
         <ul class="element-grid">
-          <li class="element">
+          <!-- <li class="element">
             <img
               class="element__image"
               src="./images/image1.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Карачаевск</h2>
               <button class="button element__button" type="button">
@@ -70,6 +89,7 @@
               src="./images/image2.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Гора Эльбрус</h2>
               <button class="button element__button" type="button">
@@ -87,6 +107,7 @@
               src="./images/image3.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Домбай</h2>
               <button class="button element__button" type="button">
@@ -104,6 +125,7 @@
               src="./images/image4.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Гора Эльбрус</h2>
               <button class="button element__button" type="button">
@@ -121,6 +143,7 @@
               src="./images/image5.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Домбай</h2>
               <button class="button element__button" type="button">
@@ -138,6 +161,7 @@
               src="./images/image6.jpg"
               alt="Фото карточки"
             />
+            <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text">Карачаево-Черкессия</h2>
               <button class="button element__button" type="button">
@@ -148,7 +172,7 @@
                 />
               </button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -156,7 +180,10 @@
       <p class="footer__copyright">&copy; 2023. Kotov Fedor</p>
     </footer>
 
-    <section class="popup" aria-label="Форма редактирования профиля">
+    <section
+      class="popup popup_edit-profile"
+      aria-label="Форма редактирования профиля"
+    >
       <div class="popup__container">
         <button class="button popup__close-button" type="button">
           <img
@@ -185,6 +212,64 @@
             Сохранить
           </button>
         </form>
+      </div>
+    </section>
+    <section
+      class="popup popup_add-card"
+      aria-label="Форма добавления карточек"
+    >
+      <div class="popup__container">
+        <button
+          class="button popup__close-button popup__close-button-card"
+          type="button"
+        >
+          <img
+            class="popup__close-icon"
+            src="./images/popup__close-icon.svg"
+            alt="Кнопка закрытия формы"
+          />
+        </button>
+        <h2 class="popup__text">Новое место</h2>
+        <form class="popup__form" name="edit-profile-form" id="popup__form">
+          <input
+            class="popup__input popup__input_card_name"
+            name="place-name"
+            placeholder="Название"
+            value=""
+          />
+          <input
+            class="popup__input popup__input_card_link"
+            name="place-link"
+            placeholder="Ссылка на картинку"
+            value=""
+          />
+          <button
+            class="button popup__submit-btn"
+            type="submit"
+            form="popup__form"
+          >
+            Создать
+          </button>
+        </form>
+      </div>
+    </section>
+    <section
+      class="popup popup_card-view"
+      aria-label="Попап для просмотра фотографий"
+    >
+      <div class="popup__container">
+        <button
+          class="button popup__close-button popup__close-button-card"
+          type="button"
+        >
+          <img
+            class="popup__close-icon"
+            src="./images/popup__close-icon.svg"
+            alt="Кнопка закрытия формы"
+          />
+        </button>
+        <img class="popup__image" src="#" alt="Фото карточки" />
+        <h2 class="popup__text"></h2>
       </div>
     </section>
     <script src="./scripts/index.js"></script>
