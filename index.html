@@ -64,116 +64,7 @@
       </template>
 
       <section class="elements">
-        <ul class="element-grid">
-          <!-- <li class="element">
-            <img
-              class="element__image"
-              src="./images/image1.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Карачаевск</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img
-              class="element__image"
-              src="./images/image2.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img
-              class="element__image"
-              src="./images/image3.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Домбай</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img
-              class="element__image"
-              src="./images/image4.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img
-              class="element__image"
-              src="./images/image5.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Домбай</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img
-              class="element__image"
-              src="./images/image6.jpg"
-              alt="Фото карточки"
-            />
-            <button class="button element__trash-button"></button>
-            <div class="element__container">
-              <h2 class="element__text">Карачаево-Черкессия</h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="./images/element__icon.svg"
-                  alt="Кнопка лайка"
-                />
-              </button>
-            </div>
-          </li> -->
-        </ul>
+        <ul class="element-grid"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -230,7 +121,7 @@
           />
         </button>
         <h2 class="popup__text">Новое место</h2>
-        <form class="popup__form" name="edit-profile-form" id="popup__form">
+        <form class="popup__form" name="add-card-form" id="add-card-form">
           <input
             class="popup__input popup__input_card_name"
             name="place-name"
@@ -246,7 +137,7 @@
           <button
             class="button popup__submit-btn"
             type="submit"
-            form="popup__form"
+            form="add-card-form"
           >
             Создать
           </button>
@@ -257,9 +148,9 @@
       class="popup popup_card-view"
       aria-label="Попап для просмотра фотографий"
     >
-      <div class="popup__container">
+      <div class="popup_card-view-container">
         <button
-          class="button popup__close-button popup__close-button-card"
+          class="button popup__close-button popup__close-button-card-view"
           type="button"
         >
           <img
@@ -269,7 +160,7 @@
           />
         </button>
         <img class="popup__image" src="#" alt="Фото карточки" />
-        <h2 class="popup__text"></h2>
+        <h2 class="popup_card-view__text"></h2>
       </div>
     </section>
     <script src="./scripts/index.js"></script>
