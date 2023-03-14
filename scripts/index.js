@@ -98,10 +98,11 @@ function addCard({ name, link }) {
     const Element = evtTrashBtn.closest(".element");
     Element.remove();
   });
-  cardElement.addEventListener("click", function () {
+  const elementImage = cardElement.firstElementChild;
+  elementImage.addEventListener("click", function () {
     popupCardView.classList.add("popup_opened");
     const image = document.querySelector(".popup__image");
-    const text = document.querySelector(".popup_card-view__text");
+    const text = document.querySelector(".popup_card-view_container__text");
     image.src = cardElement.querySelector(".element__image").src;
     text.textContent = name;
   });
@@ -120,6 +121,8 @@ function addCardFormSubmit(evt) {
   cardElement.querySelector(".element__text").textContent = cardNameInput.value;
   cardContainer.prepend(cardElement);
   closeCardPopup();
+  cardLinkInput.value = "";
+  cardNameInput.value = "";
 }
 
 popupProfileFormOpen.addEventListener("click", openProfilePopup);
