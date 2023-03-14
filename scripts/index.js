@@ -82,30 +82,44 @@ function closeCardViewPopup() {
   popupCardView.classList.remove("popup_opened");
 }
 
-function addCard({ name, link }) {
-  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-  cardElement.querySelector(".element__image").src = link;
-  cardElement.querySelector(".element__text").textContent = name;
-  cardContainer.prepend(cardElement);
+function pushLike() {
   const likeBtn = document.querySelector(".element__button");
   likeBtn.addEventListener("click", function (evt) {
     const evtLikeBtn = evt.target;
     evtLikeBtn.classList.toggle("element__icon_active");
   });
+}
+
+function deleteCard() {
+  const cardElement = cardContainer.querySelector(".element");
   const TrashBtn = cardElement.querySelector(".element__trash-button");
   TrashBtn.addEventListener("click", function (evt) {
     const evtTrashBtn = evt.target;
     const Element = evtTrashBtn.closest(".element");
     Element.remove();
   });
+}
+
+function openCardViewPopup() {
+  const cardElement = cardContainer.querySelector(".element");
   const elementImage = cardElement.firstElementChild;
   elementImage.addEventListener("click", function () {
     popupCardView.classList.add("popup_opened");
     const image = document.querySelector(".popup__image");
-    const text = document.querySelector(".popup_card-view_container__text");
+    const text = document.querySelector(".popup__text-card-view");
     image.src = cardElement.querySelector(".element__image").src;
-    text.textContent = name;
+    text.textContent = cardElement.querySelector(".element__text").textContent;
   });
+}
+
+function addCard({ name, link }) {
+  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
+  cardElement.querySelector(".element__image").src = link;
+  cardElement.querySelector(".element__text").textContent = name;
+  cardContainer.prepend(cardElement);
+  pushLike();
+  deleteCard();
+  openCardViewPopup();
 }
 
 function enumCard() {
@@ -123,6 +137,9 @@ function addCardFormSubmit(evt) {
   closeCardPopup();
   cardLinkInput.value = "";
   cardNameInput.value = "";
+  pushLike();
+  deleteCard();
+  openCardViewPopup();
 }
 
 popupProfileFormOpen.addEventListener("click", openProfilePopup);
