@@ -26,7 +26,7 @@ const popupCardView = document.querySelector(".popup_card-view");
 const cardViewPopupImage = document.querySelector(".popup__image");
 const cardViewPopupText = document.querySelector(".popup__text-card-view");
 const cardElement = cardTemplate.querySelector(".element");
-const addCardForm = document.getElementById("add-card-form");
+const additionCardForm = document.getElementById("add-card-form");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -116,13 +116,11 @@ renderInitialCards();
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const link = (cardElement.querySelector(".element__image").src =
-    cardLinkInput.value);
-  const name = (cardElement.querySelector(".element__text").textContent =
-    cardNameInput.value);
+  const link = cardLinkInput.value;
+  const name = cardNameInput.value;
   addCard({ name, link });
   closeCardPopup();
-  addCardForm.reset();
+  additionCardForm.reset();
 }
 
 popupProfileFormOpenButton.addEventListener("click", openProfilePopup);
