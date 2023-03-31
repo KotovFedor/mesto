@@ -125,8 +125,36 @@ function handleCardFormSubmit(evt) {
 
 popupProfileFormOpenButton.addEventListener("click", openProfilePopup);
 popupCardFormOpenButton.addEventListener("click", openCardPopup);
+
 popupFormClosedButton.addEventListener("click", closeProfilePopup);
 popupCardFormClosedButton.addEventListener("click", closeCardPopup);
+popupCardViewClosedButton.addEventListener("click", closeCardViewPopup);
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    closeProfilePopup();
+    closeCardPopup();
+    closeCardViewPopup();
+  }
+});
+
+popupProfileForm.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closeProfilePopup();
+  }
+});
+
+popupCardForm.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closeCardPopup();
+  }
+});
+
+popupCardView.addEventListener("click", (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closeCardViewPopup();
+  }
+});
+
 containerEditProfileForm.addEventListener("submit", handleProfileFormSubmit);
 popupCardForm.addEventListener("submit", handleCardFormSubmit);
-popupCardViewClosedButton.addEventListener("click", closeCardViewPopup);

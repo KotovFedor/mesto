@@ -87,16 +87,17 @@ const enableValidation = () => {
   // сделаем из них массив методом Array.from
   const formList = Array.from(document.querySelectorAll(".popup__form"));
 
-  // Переберём полученную коллекцию
   formList.forEach((formElement) => {
-    // Для каждой формы вызовем функцию setEventListeners,
-    // передав ей элемент формы
     setEventListeners(formElement);
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+    });
   });
+  // Переберём полученную коллекцию
 };
 
 // Вызовем функцию
 enableValidation();
 
 // Функция принимает массив полей ввода
-// и элемент кнопки, состояние которой нужно менять
+// и элемент
