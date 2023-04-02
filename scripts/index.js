@@ -34,12 +34,25 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+
+  const spanErrorList = popup.querySelectorAll(".popup__input-error");
+  const inputErrorList = popup.querySelectorAll(".popup__input");
+
+  spanErrorList.forEach((span) => {
+    span.textContent = "";
+  });
+  inputErrorList.forEach((input) => {
+    input.classList.remove("popup__input_type_error");
+  });
 }
 
 function openProfilePopup() {
   openPopup(popupProfileForm);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  const submitButton =
+    containerEditProfileForm.querySelector(".popup__submit-btn");
+  submitButton.classList.remove("popup__submit-btn_inactive");
 }
 
 function openCardPopup() {
@@ -52,6 +65,7 @@ function closeProfilePopup() {
 
 function closeCardPopup() {
   closePopup(popupCardForm);
+  additionCardForm.reset();
 }
 
 function closeCardViewPopup() {
@@ -138,20 +152,10 @@ document.addEventListener("keydown", (evt) => {
   }
 });
 
-popupProfileForm.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
+document.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("popup")) {
     closeProfilePopup();
-  }
-});
-
-popupCardForm.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
     closeCardPopup();
-  }
-});
-
-popupCardView.addEventListener("click", (evt) => {
-  if (evt.currentTarget === evt.target) {
     closeCardViewPopup();
   }
 });
