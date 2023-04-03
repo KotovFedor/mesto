@@ -30,11 +30,15 @@ const additionCardForm = document.getElementById("add-card-form");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEscape);
+}
 
+function removeErrors(popup) {
   const spanErrorList = popup.querySelectorAll(".popup__input-error");
   const inputErrorList = popup.querySelectorAll(".popup__input");
 
@@ -46,6 +50,13 @@ function closePopup(popup) {
   });
 }
 
+function closePopupByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+}
+
 function openProfilePopup() {
   openPopup(popupProfileForm);
   nameInput.value = profileName.textContent;
@@ -53,17 +64,23 @@ function openProfilePopup() {
   const submitButton =
     containerEditProfileForm.querySelector(".popup__submit-btn");
   submitButton.classList.remove("popup__submit-btn_inactive");
+  submitButton.removeAttribute("disabled", true);
 }
 
 function openCardPopup() {
   openPopup(popupCardForm);
+  const submitButton = additionCardForm.querySelector(".popup__submit-btn");
+  submitButton.classList.add("popup__submit-btn_inactive");
+  submitButton.setAttribute("disabled", true);
 }
 
 function closeProfilePopup() {
+  removeErrors(popupProfileForm);
   closePopup(popupProfileForm);
 }
 
 function closeCardPopup() {
+  removeErrors(popupCardForm);
   closePopup(popupCardForm);
   additionCardForm.reset();
 }
@@ -143,14 +160,6 @@ popupCardFormOpenButton.addEventListener("click", openCardPopup);
 popupFormClosedButton.addEventListener("click", closeProfilePopup);
 popupCardFormClosedButton.addEventListener("click", closeCardPopup);
 popupCardViewClosedButton.addEventListener("click", closeCardViewPopup);
-
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    closeProfilePopup();
-    closeCardPopup();
-    closeCardViewPopup();
-  }
-});
 
 document.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("popup")) {
