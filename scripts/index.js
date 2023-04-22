@@ -25,6 +25,7 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__profession");
 const cardContainer = document.querySelector(".element-grid");
 export const popupCardView = document.querySelector(".popup_card-view");
+const editingProfileForm = document.getElementById("edit-profile-form");
 const additionCardForm = document.getElementById("add-card-form");
 const validationObj = {
   inputSelector: ".popup__input",
@@ -33,7 +34,6 @@ const validationObj = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
-const formList = document.querySelectorAll(".popup__form");
 const initialCards = [
   {
     name: "Архыз",
@@ -60,6 +60,11 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+const profileFormValidator = new FormValidator(
+  validationObj,
+  editingProfileForm
+);
+const cardFormValidator = new FormValidator(validationObj, additionCardForm);
 
 export function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -69,18 +74,6 @@ export function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupByEscape);
-}
-
-function removeErrors(popup) {
-  const spanErrorList = popup.querySelectorAll(".popup__input-error");
-  const inputErrorList = popup.querySelectorAll(".popup__input");
-
-  spanErrorList.forEach((span) => {
-    span.textContent = "";
-  });
-  inputErrorList.forEach((input) => {
-    input.classList.remove("popup__input_type_error");
-  });
 }
 
 function closePopupByEscape(evt) {
@@ -94,26 +87,21 @@ function openProfilePopup() {
   openPopup(popupProfileForm);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  const submitButton =
-    containerEditProfileForm.querySelector(".popup__submit-btn");
-  submitButton.classList.remove("popup__submit-btn_inactive");
-  submitButton.removeAttribute("disabled", true);
+  profileFormValidator.toggleButtonState();
 }
 
 function openCardPopup() {
   openPopup(popupCardForm);
-  const submitButton = additionCardForm.querySelector(".popup__submit-btn");
-  submitButton.classList.add("popup__submit-btn_inactive");
-  submitButton.setAttribute("disabled", true);
+  cardFormValidator.toggleButtonState();
 }
 
 function closeProfilePopup() {
-  removeErrors(popupProfileForm);
+  profileFormValidator.removeErrors();
   closePopup(popupProfileForm);
 }
 
 function closeCardPopup() {
-  removeErrors(popupCardForm);
+  cardFormValidator.removeErrors();
   closePopup(popupCardForm);
   additionCardForm.reset();
 }
@@ -133,10 +121,15 @@ function addCard(cardTemplate, cardContainer) {
   cardContainer.prepend(cardTemplate);
 }
 
+function generateCard(name, link, template) {
+  const card = new Card(name, link, template);
+  const cardTemplate = card.createCard();
+  return cardTemplate;
+}
+
 function renderInitialCards() {
   initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, "#card-tempalte");
-    const cardTemplate = card.createCard();
+    const cardTemplate = generateCard(item.name, item.link, "#card-tempalte");
     addCard(cardTemplate, cardContainer);
   });
 }
@@ -147,18 +140,15 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const link = cardLinkInput.value;
   const name = cardNameInput.value;
-  const card = new Card(name, link, "#card-tempalte");
-  const cardTemplate = card.createCard();
+  const cardTemplate = generateCard(name, link, "#card-tempalte");
   addCard(cardTemplate, cardContainer);
 
   closeCardPopup();
   additionCardForm.reset();
 }
 
-formList.forEach((formElement) => {
-  const formValidator = new FormValidator(validationObj, formElement);
-  formValidator.enableValidation();
-});
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 popupProfileFormOpenButton.addEventListener("click", openProfilePopup);
 popupCardFormOpenButton.addEventListener("click", openCardPopup);
