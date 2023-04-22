@@ -8,65 +8,67 @@
     <title>Место</title>
   </head>
   <body class="root">
-    <header class="header">
-      <a class="link" href="#" target="_blank">
-        <img
-          class="header__logo"
-          src="./images/header__logo.svg"
-          alt='Логотип "Место"'
-        />
-      </a>
-    </header>
-    <main class="content">
-      <section class="profile">
-        <img
-          class="profile__avatar"
-          src="./images/profile__avatar.jpg"
-          alt="Аватар профиля"
-        />
-        <div class="profile__info">
-          <div class="profile__container">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button" type="button">
-              <img
-                class="profile__edit-image"
-                src="./images/edit-image.svg"
-                alt="Кнопка редактирования"
-              />
-            </button>
-          </div>
-          <p class="profile__profession">Исследователь океана</p>
-        </div>
-        <button class="button profile__add-button" type="button">
+    <div class="wrapper">
+      <header class="header">
+        <a class="link" href="#" target="_blank">
           <img
-            class="profile__add-image"
-            src="./images/add-image.svg"
-            alt="Кнопка добавления карточки"
+            class="header__logo"
+            src="./images/header__logo.svg"
+            alt='Логотип "Место"'
           />
-        </button>
-      </section>
-
-      <template id="card-tempalte">
-        <li class="element">
-          <img class="element__image" src="#" alt="Фото карточки" />
-          <button class="button element__trash-button"></button>
-          <div class="element__container">
-            <h2 class="element__text"></h2>
-            <button class="button element__button" type="button">
-              <img
-                class="element__icon"
-                src="./images/element__icon.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
+        </a>
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            class="profile__avatar"
+            src="./images/profile__avatar.jpg"
+            alt="Аватар профиля"
+          />
+          <div class="profile__info">
+            <div class="profile__container">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="button profile__edit-button" type="button">
+                <img
+                  class="profile__edit-image"
+                  src="./images/edit-image.svg"
+                  alt="Кнопка редактирования"
+                />
+              </button>
+            </div>
+            <p class="profile__profession">Исследователь океана</p>
           </div>
-        </li>
-      </template>
+          <button class="button profile__add-button" type="button">
+            <img
+              class="profile__add-image"
+              src="./images/add-image.svg"
+              alt="Кнопка добавления карточки"
+            />
+          </button>
+        </section>
 
-      <section class="elements">
-        <ul class="element-grid"></ul>
-      </section>
-    </main>
+        <template id="card-tempalte">
+          <li class="element">
+            <img class="element__image" src="#" alt="Фото карточки" />
+            <button class="button element__trash-button"></button>
+            <div class="element__container">
+              <h2 class="element__text"></h2>
+              <button class="button element__button" type="button">
+                <img
+                  class="element__icon"
+                  src="./images/element__icon.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </li>
+        </template>
+
+        <section class="elements">
+          <ul class="element-grid"></ul>
+        </section>
+      </main>
+    </div>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Kotov Fedor</p>
     </footer>
@@ -89,7 +91,7 @@
           name="edit-profile-form"
           id="edit-profile-form"
         >
-          <div class="popup__set">
+          <div class="popup__set popup__set-top">
             <input
               class="popup__input popup__input_user_name"
               value="Жак-Ив Кусто"
@@ -103,7 +105,7 @@
             />
             <span class="name-input-error popup__input-error"></span>
           </div>
-          <div class="popup__set">
+          <div class="popup__set popup__set-bottom">
             <input
               class="popup__input popup__input_user_profession"
               value="Исследователь океана"
@@ -144,7 +146,7 @@
         </button>
         <h2 class="popup__text">Новое место</h2>
         <form class="popup__form" name="add-card-form" id="add-card-form">
-          <div class="popup__set">
+          <div class="popup__set popup__set-top">
             <input
               class="popup__input popup__input_card_name"
               name="place-name"
@@ -159,7 +161,7 @@
             />
             <span class="place-name-input-error popup__input-error"></span>
           </div>
-          <div class="popup__set">
+          <div class="popup__set popup__set-bottom">
             <input
               class="popup__input popup__input_card_link"
               name="place-link"

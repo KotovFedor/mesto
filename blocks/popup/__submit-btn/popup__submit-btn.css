@@ -21,9 +21,10 @@
   .popup__submit-btn {
     width: 238px;
     height: 46px;
-    margin-bottom: 25px;
     font-size: 14px;
     line-height: 17px;
+    bottom: 25px;
+    left: 22px;
   }
 }
 
