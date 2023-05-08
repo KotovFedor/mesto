@@ -1,12 +1,13 @@
-import { openPopup, popupCardView } from "./index.js";
+import { popupCardView } from "../utils/constants.js";
 
 const cardViewPopupImage = document.querySelector(".popup__image");
 const cardViewPopupText = document.querySelector(".popup__text-card-view");
 
 export class Card {
-  constructor(name, link, cardTemplate) {
-    this._name = name;
-    this._link = link;
+  constructor({ data, handleCardClick }, cardTemplate) {
+    this._name = data.name;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
     this._cardTemplate = cardTemplate;
   }
 
@@ -42,7 +43,7 @@ export class Card {
       });
 
     this._cardImage.addEventListener("click", () => {
-      this._openCardImage();
+      this._handleCardClick();
     });
   }
 
@@ -55,7 +56,7 @@ export class Card {
   }
 
   _openCardImage() {
-    openPopup(popupCardView);
+    popupCardView.classList.add("popup_opened");
     cardViewPopupImage.src = this._link;
     cardViewPopupText.textContent = this._name;
     cardViewPopupImage.alt = cardViewPopupText.textContent;
