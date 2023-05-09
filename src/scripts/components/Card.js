@@ -1,8 +1,3 @@
-import { popupCardView } from "../utils/constants.js";
-
-const cardViewPopupImage = document.querySelector(".popup__image");
-const cardViewPopupText = document.querySelector(".popup__text-card-view");
-
 export class Card {
   constructor({ data, handleCardClick }, cardTemplate) {
     this._name = data.name;
@@ -53,12 +48,5 @@ export class Card {
 
   _deleteCard() {
     this._cardTemplate.remove();
-  }
-
-  _openCardImage() {
-    popupCardView.classList.add("popup_opened");
-    cardViewPopupImage.src = this._link;
-    cardViewPopupText.textContent = this._name;
-    cardViewPopupImage.alt = cardViewPopupText.textContent;
   }
 }

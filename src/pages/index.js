@@ -34,68 +34,63 @@ const userInfoProfile = new UserInfo({
   professionSelector: profileJob,
 });
 
-const editPopup = new PopupWithForm(popupProfileForm, {
+const popupEditProfile = new PopupWithForm(popupProfileForm, {
   handleFormSubmit: (item) => {
     userInfoProfile.setUserInfo(item);
-    editPopup.close();
+    popupEditProfile.close();
   },
 });
 
-editPopup.setEventListeners();
+popupEditProfile.setEventListeners();
 
 popupProfileFormOpenButton.addEventListener("click", () => {
   const profile = userInfoProfile.getUserInfo();
   nameInput.value = profile.name;
   jobInput.value = profile.profession;
-  editPopup.open();
+  popupEditProfile.open();
   profileFormValidator.enableValidation();
 });
 
-const firstCards = new Section(
+// Функция возвращает новую карточку
+function generateCard(item) {
+  const card = new Card(
+    {
+      data: item,
+      handleCardClick: () => {
+        popupWithImage.open(item.name, item.link);
+      },
+    },
+    "#card-tempalte"
+  );
+  return card;
+}
+
+const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        {
-          data: item,
-          handleCardClick: () => {
-            popupWithImage.open(item.name, item.link);
-          },
-        },
-        "#card-tempalte"
-      );
-      const cardTemplate = card.createCard();
-      firstCards.addItem(cardTemplate);
+      const cardTemplate = generateCard(item).createCard();
+      cardList.addItem(cardTemplate);
     },
   },
   cardContainer
 );
 
-firstCards.renderItems();
+cardList.renderItems();
 
-const addPopup = new PopupWithForm(popupCardForm, {
+const popupAddCard = new PopupWithForm(popupCardForm, {
   handleFormSubmit: (item) => {
-    const card = new Card(
-      {
-        data: item,
-        handleCardClick: () => {
-          popupWithImage.open(item.name, item.link);
-        },
-      },
-      "#card-tempalte"
-    );
-
-    const cardElement = card.createCard();
-    firstCards.addItem(cardElement);
+    const cardElement = generateCard(item).createCard();
+    cardList.addItem(cardElement);
     cardFormValidator.removeErrors();
-    addPopup.close();
+    popupAddCard.close();
   },
 });
 
-addPopup.setEventListeners();
+popupAddCard.setEventListeners();
 
 popupCardFormOpenButton.addEventListener("click", () => {
-  addPopup.open();
+  popupAddCard.open();
   cardFormValidator.enableValidation();
 });
 
