@@ -88,11 +88,9 @@ const popupEditAvatar = new PopupWithForm(popupAvatarForm, {
   handleFormSubmit: () => {
     popupEditAvatar.load(true);
     const inputValues = popupEditAvatar.getInputValues();
-    console.log(inputValues);
     api
       .sendUserAvatar(inputValues)
       .then((data) => {
-        console.log(data);
         userInfoProfile.setUserAvatar(data);
       })
       .catch((error) => {
@@ -115,63 +113,66 @@ popupAvatarFormOpenButton.addEventListener("click", () => {
   popupEditAvatar.open();
 });
 
+function generateCard(data, userId) {
+  const card = new Card(data, userId, {
+    cardTemplate: "#card-tempalte",
+    handleCardClick: () => {
+      popupWithImage.open(data);
+    },
+    deleteCards: () => {
+      popupWithConfirmation.open();
+      popupWithConfirmation.setHandleSubmit(() => {
+        api
+          .deleteCard(data._id)
+          .then(() => {
+            card._removeCard();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    },
+    handleLike: () => {
+      api
+        .addLike(data._id)
+        .then((data) => {
+          card._toggleLike(data.likes);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    handleDeleteLike: () => {
+      api
+        .deleteLike(data._id)
+        .then((data) => {
+          card._toggleLike(data.likes);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  });
+  return card.createCard(data);
+}
+
+const cardList = new Section(
+  {
+    renderer: (data, userId) => {
+      const cardElement = generateCard(data, userId);
+      cardList.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
+
 Promise.all([api.getUserInfo(), api.getCards()])
   .then((data) => {
     userInfoProfile.setUserInfo(data[0]);
 
     const userId = data[0]._id;
-
-    const cardList = new Section(
-      data[1],
-      {
-        renderer: (data) => {
-          const card = new Card(data, userId, {
-            cardTemplate: "#card-tempalte",
-            handleCardClick: () => {
-              popupWithImage.open(data);
-            },
-            deleteCards: () => {
-              popupWithConfirmation.open();
-              popupWithConfirmation.setHandleSubmit(() => {
-                api
-                  .deleteCard(data._id)
-                  .then(() => {
-                    card._removeCard();
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              });
-            },
-            handleLike: () => {
-              api
-                .addLike(data._id)
-                .then((data) => {
-                  card._toggleLike(data.likes);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            },
-            handleDeleteLike: () => {
-              api
-                .deleteLike(data._id)
-                .then((data) => {
-                  card._toggleLike(data.likes);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            },
-          });
-          const cardElement = card.createCard(data);
-          cardList.addItem(cardElement);
-        },
-      },
-      cardContainer
-    );
-
-    cardList.renderItems();
+    const cards = data[1];
+    cardList.renderItems(cards);
 
     const popupAddCard = new PopupWithForm(popupCardForm, {
       handleFormSubmit: () => {
@@ -180,46 +181,7 @@ Promise.all([api.getUserInfo(), api.getCards()])
         api
           .addCard(inputValues)
           .then((data) => {
-            const card = new Card(data, userId, {
-              cardTemplate: "#card-tempalte",
-              handleCardClick: () => {
-                popupWithImage.open(data);
-              },
-              deleteCards: () => {
-                popupWithConfirmation.open();
-                popupWithConfirmation.setHandleSubmit(() => {
-                  api
-                    .deleteCard(data._id)
-                    .then(() => {
-                      card._removeCard();
-                    })
-                    .catch((error) => {
-                      console.log(error);
-                    });
-                });
-              },
-              handleLike: () => {
-                api
-                  .addLike(data._id)
-                  .then((data) => {
-                    card._toggleLike(data.likes);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              },
-              handleDeleteLike: () => {
-                api
-                  .deleteLike(data._id)
-                  .then((data) => {
-                    card._toggleLike(data.likes);
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              },
-            });
-            const cardElement = card.createCard(data);
+            const cardElement = generateCard(data, userId);
             cardList.addItem(cardElement);
           })
           .catch((error) => {
