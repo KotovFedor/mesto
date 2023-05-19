@@ -55,7 +55,7 @@ popupWithConfirmation.setEventListeners();
 const popupEditProfile = new PopupWithForm(popupProfileForm, {
   handleFormSubmit: () => {
     popupEditProfile.load(true);
-    const inputValues = popupEditProfile._getInputValues();
+    const inputValues = popupEditProfile.getInputValues();
     api
       .sendUserInfo(inputValues)
       .then((data) => {
