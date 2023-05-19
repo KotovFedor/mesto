@@ -19,11 +19,14 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/profile__avatar.jpg')%>"
-            alt="Аватар профиля"
-          />
+          <div class="avatar-container">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/profile__avatar.jpg')%>"
+              alt="Аватар профиля"
+            />
+            <button class="avatar-edit-button"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -52,13 +55,16 @@
             <button class="button element__trash-button"></button>
             <div class="element__container">
               <h2 class="element__text"></h2>
-              <button class="button element__button" type="button">
-                <img
-                  class="element__icon"
-                  src="<%=require('./images/element__icon.svg')%>"
-                  alt="Кнопка лайка"
-                />
-              </button>
+              <div class="like">
+                <button class="button element__button" type="button">
+                  <img
+                    class="element__icon"
+                    src="<%=require('./images/element__icon.svg')%>"
+                    alt="Кнопка лайка"
+                  />
+                </button>
+                <p class="like-count">0</p>
+              </div>
             </div>
           </li>
         </template>
@@ -71,6 +77,48 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023. Kotov Fedor</p>
     </footer>
+
+    <section
+      class="popup popup_edit-avatar-profile"
+      aria-label="Форма редактирования аватара профиля"
+    >
+      <div class="popup__container popup__container-edit-profile-form">
+        <button class="button popup__close-button" type="button">
+          <img
+            class="popup__close-icon"
+            src="<%=require('./images/popup__close-icon.svg')%>"
+            alt="Кнопка закрытия формы"
+          />
+        </button>
+        <h2 class="popup__text">Обновить аватар</h2>
+        <form
+          class="popup__form"
+          name="edit-avatar-profile-form"
+          id="edit-avatar-profile-form"
+        >
+          <div class="popup__set popup__set-bottom">
+            <input
+              class="popup__input popup__input_card_link"
+              name="link"
+              placeholder="Ссылка на картинку"
+              value=""
+              type="url"
+              required
+              novalidate
+              id="place-link-input"
+            />
+            <span class="place-link-input-error popup__input-error"></span>
+          </div>
+          <button
+            class="button popup__submit-btn"
+            type="submit"
+            form="edit-avatar-profile-form"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </section>
 
     <section
       class="popup popup_edit-profile"
@@ -179,6 +227,33 @@
             form="add-card-form"
           >
             Создать
+          </button>
+        </form>
+      </div>
+    </section>
+    <section
+      class="popup popup_delete-card"
+      aria-label="Форма удаления карточки"
+    >
+      <div class="popup__container">
+        <button
+          class="button popup__close-button popup__close-button-card"
+          type="button"
+        >
+          <img
+            class="popup__close-icon"
+            src="<%=require('./images/popup__close-icon.svg')%>"
+            alt="Кнопка закрытия формы"
+          />
+        </button>
+        <h2 class="popup__text">Вы уверены?</h2>
+        <form class="popup__form" name="delete-card-form" id="delete-card-form">
+          <button
+            class="button popup__submit-btn"
+            type="submit"
+            form="delete-card-form"
+          >
+            Да
           </button>
         </form>
       </div>

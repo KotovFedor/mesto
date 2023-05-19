@@ -8,10 +8,10 @@ export class PopupWithImage extends Popup {
       ".popup__text-card-view"
     );
   }
-  open(name, link) {
-    this._popupImage.src = link;
-    this._popupImage.alt = name;
-    this._popupText.textContent = name;
+  open(data) {
+    this._popupImage.src = data.link;
+    this._popupImage.alt = data.name;
+    this._popupText.textContent = data.name;
     super.open();
   }
 }
