@@ -50,13 +50,12 @@ const userInfoProfile = new UserInfo({
 });
 
 const popupWithConfirmation = new PopupWithConfirmation(popupConfirmation);
-
 popupWithConfirmation.setEventListeners();
 
 const popupEditProfile = new PopupWithForm(popupProfileForm, {
   handleFormSubmit: () => {
     popupEditProfile.load(true);
-    const inputValues = popupEditProfile.getInputValues();
+    const inputValues = popupEditProfile._getInputValues();
     api
       .sendUserInfo(inputValues)
       .then((data) => {
@@ -83,7 +82,6 @@ popupProfileFormOpenButton.addEventListener("click", () => {
 });
 
 const popupWithImage = new PopupWithImage(popupCardView);
-
 popupWithImage.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm(popupAvatarForm, {
@@ -123,54 +121,50 @@ Promise.all([api.getUserInfo(), api.getCards()])
 
     const userId = data[0]._id;
 
-    function generateCard(data, userId) {
-      const card = new Card(data, userId, {
-        cardTemplate: "#card-tempalte",
-        handleCardClick: () => {
-          popupWithImage.open(data);
-        },
-        deleteCards: () => {
-          popupWithConfirmation.open();
-          popupWithConfirmation.setHandleSubmit(() => {
-            api
-              .deleteCard(data._id)
-              .then(() => {
-                card._removeCard();
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          });
-        },
-        handleLike: () => {
-          api
-            .addLike(data._id)
-            .then((data) => {
-              card._toggleLike(data.likes);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
-        handleDeleteLike: () => {
-          api
-            .deleteLike(data._id)
-            .then((data) => {
-              card._toggleLike(data.likes);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        },
-      });
-      return card.createCard();
-    }
-
     const cardList = new Section(
       data[1],
       {
         renderer: (data) => {
-          const cardElement = generateCard(data, userId);
+          const card = new Card(data, userId, {
+            cardTemplate: "#card-tempalte",
+            handleCardClick: () => {
+              popupWithImage.open(data);
+            },
+            deleteCards: () => {
+              popupWithConfirmation.open();
+              popupWithConfirmation.setHandleSubmit(() => {
+                api
+                  .deleteCard(data._id)
+                  .then(() => {
+                    card._removeCard();
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              });
+            },
+            handleLike: () => {
+              api
+                .addLike(data._id)
+                .then((data) => {
+                  card._toggleLike(data.likes);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            },
+            handleDeleteLike: () => {
+              api
+                .deleteLike(data._id)
+                .then((data) => {
+                  card._toggleLike(data.likes);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            },
+          });
+          const cardElement = card.createCard(data);
           cardList.addItem(cardElement);
         },
       },
@@ -183,12 +177,49 @@ Promise.all([api.getUserInfo(), api.getCards()])
       handleFormSubmit: () => {
         popupAddCard.load(true);
         const inputValues = popupAddCard.getInputValues();
-        console.log(inputValues);
         api
           .addCard(inputValues)
           .then((data) => {
-            console.log(data);
-            const cardElement = generateCard(data, userId);
+            const card = new Card(data, userId, {
+              cardTemplate: "#card-tempalte",
+              handleCardClick: () => {
+                popupWithImage.open(data);
+              },
+              deleteCards: () => {
+                popupWithConfirmation.open();
+                popupWithConfirmation.setHandleSubmit(() => {
+                  api
+                    .deleteCard(data._id)
+                    .then(() => {
+                      card._removeCard();
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
+                });
+              },
+              handleLike: () => {
+                api
+                  .addLike(data._id)
+                  .then((data) => {
+                    card._toggleLike(data.likes);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              },
+              handleDeleteLike: () => {
+                api
+                  .deleteLike(data._id)
+                  .then((data) => {
+                    card._toggleLike(data.likes);
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              },
+            });
+            const cardElement = card.createCard(data);
             cardList.addItem(cardElement);
           })
           .catch((error) => {
