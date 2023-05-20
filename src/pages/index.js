@@ -60,13 +60,13 @@ const popupEditProfile = new PopupWithForm(popupProfileForm, {
       .sendUserInfo(inputValues)
       .then((data) => {
         userInfoProfile.setUserInfo(data);
+        popupEditProfile.close();
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => {
         popupEditProfile.load(false);
-        popupEditProfile.close();
       });
   },
 });
@@ -92,13 +92,13 @@ const popupEditAvatar = new PopupWithForm(popupAvatarForm, {
       .sendUserAvatar(inputValues)
       .then((data) => {
         userInfoProfile.setUserAvatar(data);
+        popupEditAvatar.close();
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => {
         popupEditAvatar.load(false);
-        popupEditAvatar.close();
       });
   },
 });
@@ -166,40 +166,40 @@ const cardList = new Section(
   cardContainer
 );
 
+const popupAddCard = new PopupWithForm(popupCardForm, {
+  handleFormSubmit: () => {
+    popupAddCard.load(true);
+    const inputValues = popupAddCard.getInputValues();
+    api
+      .addCard(inputValues)
+      .then((data) => {
+        console.log(data);
+        const userId = data.owner._id;
+        const cardElement = generateCard(data, userId);
+        cardList.addItem(cardElement);
+        popupAddCard.close();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        popupAddCard.load(false);
+      });
+  },
+});
+
+popupAddCard.setEventListeners();
+
+popupCardFormOpenButton.addEventListener("click", () => {
+  popupAddCard.open();
+  cardFormValidator.enableValidation();
+});
+
 Promise.all([api.getUserInfo(), api.getCards()])
   .then((data) => {
     userInfoProfile.setUserInfo(data[0]);
-
-    const userId = data[0]._id;
     const cards = data[1];
     cardList.renderItems(cards);
-
-    const popupAddCard = new PopupWithForm(popupCardForm, {
-      handleFormSubmit: () => {
-        popupAddCard.load(true);
-        const inputValues = popupAddCard.getInputValues();
-        api
-          .addCard(inputValues)
-          .then((data) => {
-            const cardElement = generateCard(data, userId);
-            cardList.addItem(cardElement);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => {
-            popupAddCard.load(false);
-            popupAddCard.close();
-          });
-      },
-    });
-
-    popupAddCard.setEventListeners();
-
-    popupCardFormOpenButton.addEventListener("click", () => {
-      popupAddCard.open();
-      cardFormValidator.enableValidation();
-    });
   })
   .catch((error) => {
     console.log(error);
