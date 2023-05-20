@@ -173,7 +173,6 @@ const popupAddCard = new PopupWithForm(popupCardForm, {
     api
       .addCard(inputValues)
       .then((data) => {
-        console.log(data);
         const userId = data.owner._id;
         const cardElement = generateCard(data, userId);
         cardList.addItem(cardElement);
